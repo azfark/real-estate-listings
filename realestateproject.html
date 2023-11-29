@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        #search {
+            background-color: #ecf0f1;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        #search h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #bdc3c7;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #property-listings {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .property {
+            width: 45%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .property img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .property h3,
+        .property p {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .property a {
+            display: block;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            nav ul.show {
+                display: block;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                    // Close the navigation menu on small screens
+                    const navList = document.querySelector('nav ul');
+                    navList.classList.remove('show');
+                });
+            });
+
+            // Search form functionality
+            const searchForm = document.querySelector('form');
+            const searchInput = document.querySelector('input[type="text"]');
+
+            searchForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const searchQuery = searchInput.value.trim();
+                alert('Search query: ' + searchQuery);
+                // You can modify this part to perform an actual search or any other action
+            });
+
+            // Image Slideshow for Property Listings
+            const propertyListings = document.querySelectorAll('.property');
+
+            propertyListings.forEach(property => {
+                const images = property.querySelectorAll('img');
+                let currentImageIndex = 0;
+
+                setInterval(() => {
+                    images[currentImageIndex].style.opacity = 0;
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    images[currentImageIndex].style.opacity = 1;
+                }, 3000); // Change image every 3 seconds
+            });
+
+            // Toggle Navigation Menu for Small Screens
+            const navToggle = document.getElementById('nav-toggle');
+            const navList = document.querySelector('nav ul');
+
+            navToggle.addEventListener('click', function () {
+                navList.classList.toggle('show');
+            });
+        });
+    </script>
+    <title>Real Estate Listings</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Real Estate Listings</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <button id="nav-toggle">Toggle Menu</button>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="search">
+        <h2>Search Properties</h2>
+        <form>
+            <input type="text" placeholder="Enter location, type, or price">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section id="property-listings">
+        <div class="property">
+            <img src="https://i.pinimg.com/564x/31/c9/4d/31c94d70dc86252561691852f47797e9.jpg" alt="Property 1">
+            <h3>The Dragon's Lair</h3>
+            <p>Location: SAROJNI-NAGAR,DELHI</p>
+            <p>Price: 750,000 </p>
+            <a href="property1.html" target="_blank">View Details</a>
+        </div>
+        <div class="property">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2022/4/UU/TN/SG/27215609/capture1-500x500.PNG" alt="Property 1">
+            <h3>The Velvet Mansion</h3>
+            <p>Location: HAZRATGANJ,LUCKNOW</p>
+            <p>Price: 650,000</p>
+            <a href="property2.html" target="_blank">View Details</a>
+        </div>
+        <div class="property">
+            <img src="https://i.pinimg.com/564x/57/eb/7a/57eb7a1c6162f838f3406972a96687bf.jpg" alt="Property 2">
+            <h3>JOSEPH ANTELA</h3>
+            <p>Location: FAIZABAD ,AYODHYA</p>
+            <p>Price: 750,000</p>
+            <a href="property3.html" target="_blank">View Details</a>
+        </div>
+        <div class="property">
+            <img src="https://www.estateagenttoday.co.uk/upload/BoxBrownie-MainImage-400x310.jpg" alt="Property 3">
+            <h3>The Phoenix House</h3>
+            <p>Location: GOMTINAGAR,LUCKNOW</p>
+            <p>Price: 900,000</p>
+            <a href="property4.html" target="_blank">View Details</a>
+        </div>
+    </section>
+
+    <section id="about-us">
+        <h2>About Us</h2>
+        <p>Welcome to our real estate listings and property management website. We are dedicated to helping you find the perfect home and manage your properties with ease.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Property Listings and Search</li>
+            <li>Property Management Tools</li>
+            <li>Real Estate Blog</li>
+            <li>Customer Support</li>
+        </ul>
+    </section>
+
+    <section id="blog">
+        <h2>Blog</h2>
+        <ul>
+            <li><a href="https://www.bankrate.com/mortgages/tips-for-first-time-home-buyers/" target="_blank">10 Tips for First-Time Home Buyers</a></li>
+            <li><a href="https://www.lfcu.org/news/buying-a-house/five-ways-to-maximize-your-homes-curb-appeal-consider-these-key-upgrades-to-boost-resale-value/" target="_blank">Maximizing Your Property's Curb Appeal</a></li>
+        </ul>
+    </section>
+
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonial">
+            <p>"I found my dream home through this website. The process was smooth and efficient. Highly recommended!"</p>
+            <p>- John Doe</p>
+        </div>
+        <div class="testimonial">
+            <p>"The property management tools are a game-changer. I can easily keep track of my investments."</p>
+            <p>- Jane Smith</p>
+        </div>
+    </section>
+
+    <section id="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need assistance, feel free to get in touch with us:</p>
+        <p>Email: info@realestatewebsite.com</p>
+        <p>Phone: 123-456-7890</p>
+    </section>
+</body>
+</html>
